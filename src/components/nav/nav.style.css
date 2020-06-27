@@ -1,0 +1,27 @@
+.nav-main-container {
+  height: 72px;
+  width: 100vw;
+  background-color: teal;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: light;
+  position: fixed;
+  top: 0;
+  box-shadow: 0 4px 6px -2px grey;
+}
+
+.user-container {
+  margin-right: 40px;
+}
+
+.nav-sub-container {
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
+}
+
+.logo {
+  width: 150px;
+  padding: 23px;
+}

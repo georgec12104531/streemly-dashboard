@@ -1,0 +1,19 @@
+.home-main-container {
+  display: flex;
+  justify-content: center;
+  height: 1600px;
+}
+
+.dashboard-main-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 72px;
+  width: 100vw;
+  padding: 40px;
+  background-color: rgba(0, 128, 128, 0.3);
+}
+
+.dashboard-container {
+  width: 80%;
+  height: 500px;
+}
