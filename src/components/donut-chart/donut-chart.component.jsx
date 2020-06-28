@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Chart, Doughnut } from "react-chartjs-2";
 
-const DoughnutChart = () => {
+const DoughnutChart = ({ chartData }) => {
+  // const { totals, approvalStatusTotals } = chartData;
+
+  // console.log("chartData", chartData);
+  // console.log("chartData", chartData);
   const [data, setData] = useState();
+
+  // useEffect(() => {
+  //   setData(chartData);
+  // }, [setData, chartData]);
 
   // Plugin for adding center text inside donut
   let originalDoughnutDraw = Chart.controllers.doughnut.prototype.draw;
@@ -28,28 +36,29 @@ const DoughnutChart = () => {
     },
   });
 
-  const chart = () =>
-    setData({
-      datasets: [
-        {
-          data: [1, 20, 30],
-          backgroundColor: ["teal", "orange", "red"],
-        },
-      ],
-
-      // These labels appear in the legend and in the tooltips when hovering different arcs
-      labels: ["Approvals", "Pending", "Rejected"],
-      text: "23",
-    });
-
   useEffect(() => {
+    const chart = () =>
+      setData({
+        datasets: [
+          {
+            data: chartData
+              ? Object.values(chartData.approvalStatusTotals)
+              : [],
+            backgroundColor: ["teal", "orange", "red"],
+          },
+        ],
+
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+        labels: chartData ? Object.keys(chartData.approvalStatusTotals) : [],
+        text: chartData ? `${chartData.totals}` : "",
+      });
     chart();
-  }, []);
+  }, [chartData]);
 
   return (
     <div>
       <Doughnut
-        data={data}
+        data={data || {}}
         options={{
           responsive: true,
           cutoutPercentage: 80,

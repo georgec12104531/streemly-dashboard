@@ -1,20 +1,29 @@
 import React from "react";
+import { connect } from "react-redux";
 import Title from "../../components/title/title.component";
 import DoughnutChart from "../../components/donut-chart/donut-chart.component";
-import "./home.component.css";
+import Panel from "../../components/panel/panel.component";
+import Header from "../../components/header/header.component";
+import PaginationTable from "../../components/table/table.component";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
-import Header from "../../components/header/header.component";
+import {
+  getListTypeTotalCountForDonutChart,
+  getListTypeApprovalStatusCountForDonutChart,
+  getListTypeApprovalStatusCountForPanel,
+} from "../../mapper-service/mapper-service";
 
-const Home = () => {
+import "./home.component.css";
+
+const Home = ({ approvals }) => {
   const useStyles = makeStyles((theme) => {
     return {
       card: {
         padding: theme.spacing(2),
         textAlign: "center",
-        height: "483px",
       },
       header: {
         textAlign: "start",
@@ -41,26 +50,58 @@ const Home = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Paper className={classes.card}>
-                  <Title title={"My Approvals"} subTitle={"This Month"}></Title>
-                  <DoughnutChart></DoughnutChart>
+                  <Title title={"My Approvals"} subTitle={"this Month"}></Title>
+                  <DoughnutChart
+                    chartData={{
+                      totals: getListTypeTotalCountForDonutChart(
+                        approvals,
+                        "myApprovals"
+                      ),
+                      approvalStatusTotals: getListTypeApprovalStatusCountForDonutChart(
+                        approvals,
+                        "myApprovals"
+                      ),
+                    }}
+                  ></DoughnutChart>
+                  <Panel
+                    data={getListTypeApprovalStatusCountForPanel(
+                      approvals,
+                      "myApprovals"
+                    )}
+                  ></Panel>
                 </Paper>
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Paper className={classes.card}>
-                  <Title title={"My Requests"} subTitle={"This Month"}></Title>
-                  <DoughnutChart></DoughnutChart>
-                    
+                  <Title title={"My Requests"} subTitle={"this Month"}></Title>
+                  <DoughnutChart
+                    chartData={{
+                      totals: getListTypeTotalCountForDonutChart(
+                        approvals,
+                        "myRequests"
+                      ),
+                      approvalStatusTotals: getListTypeApprovalStatusCountForDonutChart(
+                        approvals,
+                        "myRequests"
+                      ),
+                    }}
+                  ></DoughnutChart>
+                  <Panel
+                    data={getListTypeApprovalStatusCountForPanel(
+                      approvals,
+                      "myRequests"
+                    )}
+                  ></Panel>
                 </Paper>
               </Grid>
               <Grid item xs={12}>
                 <Paper elevation={3} className={classes.card}>
-                  <Header></Header>
+                  <h6>Table Title</h6>
+                  <PaginationTable data={approvals}></PaginationTable>
                 </Paper>
               </Grid>
               <Grid item xs={12}>
-                <Paper elevation={3} className={classes.card}>
-                  <Header></Header>
-                </Paper>
+                <Paper elevation={3} className={classes.card}></Paper>
               </Grid>
             </Grid>
           </div>
@@ -70,4 +111,8 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapStateToProps = (state) => ({
+  approvals: state.approvals,
+});
+
+export default connect(mapStateToProps, null)(Home);
