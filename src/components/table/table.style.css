@@ -28,3 +28,32 @@ button.closed {
   border: 1px solid red;
   cursor: default;
 }
+
+.days-in-queue-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.queue-status {
+  height: 13px;
+  width: 13px;
+  border-radius: 13px;
+  margin: 0 5px 2px 5px;
+}
+
+.queue-status.green {
+  background-color: green;
+}
+
+.queue-status.orange {
+  background-color: orange;
+}
+
+.queue-status.red {
+  background-color: red;
+}
+
+TableCell.asdf {
+  color: pink;
+}

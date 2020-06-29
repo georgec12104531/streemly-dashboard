@@ -2,8 +2,6 @@ import React from "react";
 import "./panel.component.css";
 
 const Panel = ({ data }) => {
-  console.log("data", data);
-  // console.log(dataProp);
   // let data = [
   //   { id: 100, label: "Approved", count: 25, color: "green" },
   //   { id: 101, label: "Pending", count: 26, color: "orange" },

@@ -1,11 +1,11 @@
-export const createList = () => {
+export const createInitialState = () => {
   let requestNum = 1;
   let count = 100;
   let result = [];
 
   while (count) {
     let newEntry = {};
-    newEntry.id = requestNum;
+    newEntry.id = uniqueId("_");
     newEntry.request = "George Chang #" + requestNum.toString();
     newEntry.workFlow = "George Chang";
     newEntry.requestor = "George Chang";
@@ -21,7 +21,7 @@ export const createList = () => {
       requestNum % 2 === 0
         ? ["underReview", "approved"]
         : ["approved", "underReview"];
-    newEntry.days = 6;
+    newEntry.days = 8;
     newEntry.priority = "normal";
     newEntry.listType = requestNum % 4 === 0 ? "myRequests" : "myApprovals";
     requestNum++;

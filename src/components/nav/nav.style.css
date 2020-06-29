@@ -9,6 +9,7 @@
   position: fixed;
   top: 0;
   box-shadow: 0 4px 6px -2px grey;
+  z-index: 1;
 }
 
 .user-container {

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { handlePriorityChange } from "../../redux/actions/action-creators";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -16,9 +18,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
 
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
@@ -113,8 +113,11 @@ const useStyles2 = makeStyles({
   },
 });
 
-const PaginationTable = ({ data }) => {
-  console.log("data", data);
+const PaginationTable = ({
+  data,
+  customProperties: { isMyPriority },
+  handlePriorityChange,
+}) => {
   const classes = useStyles2();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -131,8 +134,16 @@ const PaginationTable = ({ data }) => {
     setPage(0);
   };
 
-  const handleChange = (event) => {
-    console.log(event.target.value);
+  const getQueueStatusClass = (days) => {
+    if (!days) return "";
+
+    if (days <= 3) {
+      return "queue-status green";
+    } else if (days <= 7) {
+      return "queue-status orange";
+    } else {
+      return "queue-status red";
+    }
   };
 
   return (
@@ -146,14 +157,16 @@ const PaginationTable = ({ data }) => {
             <TableCell align="left">Status</TableCell>
             <TableCell align="left">Approval</TableCell>
             <TableCell align="left">Days in Queue</TableCell>
-            <TableCell align="left">My Priority</TableCell>
+            {isMyPriority ? (
+              <TableCell align="left">My Priority</TableCell>
+            ) : null}
           </TableRow>
         </TableHead>
         <TableBody>
           {(rowsPerPage > 0
             ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : data
-          ).map((row) => (
+          ).map((row, i) => (
             <TableRow key={row.id}>
               <TableCell align="left">{row.request}</TableCell>
               <TableCell align="left">{row.workFlow}</TableCell>
@@ -191,22 +204,30 @@ const PaginationTable = ({ data }) => {
                   )
                 )}
               </TableCell>
-              <TableCell align="left">{row.days}</TableCell>
               <TableCell align="left">
-                <FormControl className={classes.formControl}>
-                  {/* <InputLabel id="demo-simple-select-label">Age</InputLabel> */}
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={row.priority}
-                    onChange={(e) => (row.priority = e.target.value)}
-                  >
-                    <MenuItem value={"low"}>Low</MenuItem>
-                    <MenuItem value={"normal"}>Normal</MenuItem>
-                    <MenuItem value={"high"}>High</MenuItem>
-                  </Select>
-                </FormControl>
+                <div className="days-in-queue-container">
+                  {row.days}
+                  <div className={getQueueStatusClass(row.days)}></div>
+                </div>
               </TableCell>
+              {isMyPriority ? (
+                <TableCell align="left">
+                  <FormControl className={classes.formControl}>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={row.priority}
+                      onChange={(e) =>
+                        handlePriorityChange(row.id, e.target.value)
+                      }
+                    >
+                      <MenuItem value={"low"}>Low</MenuItem>
+                      <MenuItem value={"normal"}>Normal</MenuItem>
+                      <MenuItem value={"high"}>High</MenuItem>
+                    </Select>
+                  </FormControl>
+                </TableCell>
+              ) : null}
             </TableRow>
           ))}
           {emptyRows > 0 && (
@@ -238,4 +259,9 @@ const PaginationTable = ({ data }) => {
   );
 };
 
-export default PaginationTable;
+const mapDispatchToProps = (dispatch) => ({
+  handlePriorityChange: (id, priority) =>
+    dispatch(handlePriorityChange(id, priority)),
+});
+
+export default connect(null, mapDispatchToProps)(PaginationTable);

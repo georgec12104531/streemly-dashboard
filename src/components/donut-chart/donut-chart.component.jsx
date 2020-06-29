@@ -44,7 +44,7 @@ const DoughnutChart = ({ chartData }) => {
             data: chartData
               ? Object.values(chartData.approvalStatusTotals)
               : [],
-            backgroundColor: ["teal", "orange", "red"],
+            backgroundColor: ["red", "teal", "orange"],
           },
         ],
 

@@ -14,6 +14,7 @@ import {
   getListTypeTotalCountForDonutChart,
   getListTypeApprovalStatusCountForDonutChart,
   getListTypeApprovalStatusCountForPanel,
+  getDataForTable,
 } from "../../mapper-service/mapper-service";
 
 import "./home.component.css";
@@ -96,12 +97,21 @@ const Home = ({ approvals }) => {
               </Grid>
               <Grid item xs={12}>
                 <Paper elevation={3} className={classes.card}>
-                  <h6>Table Title</h6>
-                  <PaginationTable data={approvals}></PaginationTable>
+                  <Title title={"Approvals In My Queue"}></Title>
+                <PaginationTable
+                    data={getDataForTable(approvals, "myApprovals")}
+                    customProperties={{ isMyPriority: true }}
+                  ></PaginationTable>
                 </Paper>
               </Grid>
               <Grid item xs={12}>
-                <Paper elevation={3} className={classes.card}></Paper>
+                <Paper elevation={3} className={classes.card}>
+                  <Title title={"My Open Requests"}></Title>
+                  <PaginationTable
+                    data={getDataForTable(approvals, "myRequests")}
+                    customProperties={{ isMyPriority: false }}
+                  ></PaginationTable>
+                </Paper>
               </Grid>
             </Grid>
           </div>

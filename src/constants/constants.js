@@ -1,3 +1,3 @@
-import { createList } from "../utility/utility";
+import { createInitialState } from "../utility/utility";
 
-export const APPROVALS = createList();
+export const APPROVALS = createInitialState();
