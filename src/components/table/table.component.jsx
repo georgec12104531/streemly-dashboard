@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { handlePriorityChange } from "../../redux/actions/action-creators";
+import { handlePriorityChange } from "../../redux/action-creators/priority-actions";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -111,6 +111,9 @@ const useStyles2 = makeStyles({
   table: {
     minWidth: 500,
   },
+  head: {
+    fontWeight: 600,
+  },
 });
 
 const PaginationTable = ({
@@ -151,14 +154,28 @@ const PaginationTable = ({
       <Table className={classes.table} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <TableCell align="left">Request</TableCell>
-            <TableCell align="left">Workflow</TableCell>
-            <TableCell align="left">Requestor</TableCell>
-            <TableCell align="left">Status</TableCell>
-            <TableCell align="left">Approval</TableCell>
-            <TableCell align="left">Days in Queue</TableCell>
+            <TableCell className={classes.head} align="left">
+              Request
+            </TableCell>
+            <TableCell className={classes.head} align="left">
+              Workflow
+            </TableCell>
+            <TableCell className={classes.head} align="left">
+              Requestor
+            </TableCell>
+            <TableCell className={classes.head} align="left">
+              Status
+            </TableCell>
+            <TableCell className={classes.head} align="left">
+              Approval
+            </TableCell>
+            <TableCell className={classes.head} align="left">
+              Days in Queue
+            </TableCell>
             {isMyPriority ? (
-              <TableCell align="left">My Priority</TableCell>
+              <TableCell className={classes.head} align="left">
+                My Priority
+              </TableCell>
             ) : null}
           </TableRow>
         </TableHead>

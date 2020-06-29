@@ -6,9 +6,9 @@ export const createInitialState = () => {
   while (count) {
     let newEntry = {};
     newEntry.id = uniqueId("_");
-    newEntry.request = "George Chang #" + requestNum.toString();
-    newEntry.workFlow = "George Chang";
-    newEntry.requestor = "George Chang";
+    newEntry.request = "Rick Sanchez #" + requestNum.toString();
+    newEntry.workFlow = "Rick Sanchez";
+    newEntry.requestor = "Rick Sanchez";
     newEntry.status = requestNum % 2 === 0 ? "open" : "closed";
     if (requestNum % 7 === 0) {
       newEntry.approval = "pending";

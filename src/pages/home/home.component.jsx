@@ -98,7 +98,7 @@ const Home = ({ approvals }) => {
               <Grid item xs={12}>
                 <Paper elevation={3} className={classes.card}>
                   <Title title={"Approvals In My Queue"}></Title>
-                <PaginationTable
+                  <PaginationTable
                     data={getDataForTable(approvals, "myApprovals")}
                     customProperties={{ isMyPriority: true }}
                   ></PaginationTable>

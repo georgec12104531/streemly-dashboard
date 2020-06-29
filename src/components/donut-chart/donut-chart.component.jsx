@@ -2,15 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Chart, Doughnut } from "react-chartjs-2";
 
 const DoughnutChart = ({ chartData }) => {
-  // const { totals, approvalStatusTotals } = chartData;
-
-  // console.log("chartData", chartData);
-  // console.log("chartData", chartData);
   const [data, setData] = useState();
-
-  // useEffect(() => {
-  //   setData(chartData);
-  // }, [setData, chartData]);
 
   // Plugin for adding center text inside donut
   let originalDoughnutDraw = Chart.controllers.doughnut.prototype.draw;
@@ -47,8 +39,6 @@ const DoughnutChart = ({ chartData }) => {
             backgroundColor: ["red", "teal", "orange"],
           },
         ],
-
-        // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: chartData ? Object.keys(chartData.approvalStatusTotals) : [],
         text: chartData ? `${chartData.totals}` : "",
       });
