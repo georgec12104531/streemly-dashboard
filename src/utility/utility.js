@@ -1,4 +1,4 @@
-export const createInitialState = () => {
+const createInitialState = () => {
   let requestNum = 1;
   let count = 100;
   let result = [];
@@ -32,7 +32,7 @@ export const createInitialState = () => {
   return result;
 };
 
-export const uniqueId = (function () {
+const uniqueId = (function () {
   let num = 0;
   return function (prefix) {
     prefix = String(prefix) || "";
@@ -40,3 +40,5 @@ export const uniqueId = (function () {
     return prefix + num;
   };
 })();
+
+module.exports = { createInitialState, uniqueId };

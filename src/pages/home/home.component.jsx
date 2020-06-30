@@ -46,7 +46,7 @@ const Home = ({ approvals }) => {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Paper elevation={3} className={classes.header}>
-                  <Header></Header>
+                  <Header title={"Approval Dashboard"}></Header>
                 </Paper>
               </Grid>
               <Grid item xs={12} sm={6}>

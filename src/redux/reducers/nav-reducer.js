@@ -1,6 +1,6 @@
 import { NavTypes } from "../types/types";
 
-const INITIAL_STATE = [
+export const INITIAL_STATE = [
   { name: "Home", selected: true, path: "home", id: 1 },
   { name: "New Request", selected: false, path: "new-request", id: 2 },
   { name: "Recent Request", selected: false, path: "recent-request", id: 3 },

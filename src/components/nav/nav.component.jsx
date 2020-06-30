@@ -17,6 +17,7 @@ const Nav = ({ navItems, navChange }) => {
         {navItems.map(({ name, path, id, selected }) => (
           <Link
             key={id}
+            id={`${id}_${path}`}
             onClick={() => navChange(id)}
             className={selected ? "selected" : "unselected"}
             to={`/${path}`}
