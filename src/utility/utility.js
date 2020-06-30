@@ -1,3 +1,4 @@
+// Initial state for Approvals Reducer
 const createInitialState = () => {
   let requestNum = 1;
   let count = 100;

@@ -11,9 +11,7 @@ export const INITIAL_STATE = [
 const NavReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case NavTypes.CHANGE_NAV:
-      console.log("action", action);
       let newState = updateObjectInArray(state, action);
-      console.log("newstate", newState);
       return newState;
     default:
       return state;
@@ -21,7 +19,6 @@ const NavReducer = (state = INITIAL_STATE, action) => {
 };
 
 function updateObjectInArray(array, { id }) {
-  console.log("id", id);
   return array.map((item, index) => {
     let newItem = null;
     if (item.id === id) {

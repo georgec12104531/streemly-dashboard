@@ -1,11 +1,8 @@
 import React from "react";
-import { render, getByText } from "../../test-utils/test-utils";
-import { createStore } from "redux";
+import { render } from "../../test-utils/test-utils";
 import Nav from "./nav.component.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
-
-// afterEach(cleanup);
 
 it("renders with redux", () => {
   const { getByText } = render(

@@ -3,13 +3,9 @@ import React from "react";
 import { render as rtlRender } from "@testing-library/react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-// import "jest-dom/extend-expect";
 import { INITIAL_STATE as initalState } from "../redux/reducers/nav-reducer";
 
 import rootReducer from "../redux/reducers/root-reducer";
-// import store from "./";
-
-// console.log(reducerInitialState)
 
 function render(
   component,
