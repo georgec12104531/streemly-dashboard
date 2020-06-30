@@ -56,6 +56,7 @@ const PaginationTable = ({
     setPage(0);
   };
 
+  // Setting the status circle next to the days in qeueu
   const getQueueStatusClass = (days) => {
     if (!days) return "";
 

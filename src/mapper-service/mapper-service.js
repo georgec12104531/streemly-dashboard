@@ -23,11 +23,6 @@ export const getListTypeApprovalStatusCountForDonutChart = (
   return count;
 };
 
-// let data = [
-//   { id: 100, label: "Approved", count: 25, color: "green" },
-//   { id: 101, label: "Pending", count: 26, color: "orange" },
-//   { id: 102, label: "Rejected", count: 26, color: "red" },
-// ];
 export const getListTypeApprovalStatusCountForPanel = (approvals, type) => {
   let countObj = getListTypeApprovalStatusCountForDonutChart(approvals, type);
   let panelArr = [];
