@@ -1,5 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## Technologies Used: 
+- React
+- Redux
+- Chart.js
+- Material UI
+- Cypress
+- Jest
+- React Testing Library
+
 ## Available Scripts
 
 In the project directory, you can run:
